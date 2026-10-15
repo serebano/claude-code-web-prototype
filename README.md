@@ -26,3 +26,17 @@ Demo boundaries: no AI calls, shell execution, filesystem access, automatic sche
 - Desktop and mobile layout inspection.
 
 The private Sites deployment is configured in `.openai/hosting.json`.
+
+## Desktop UX fidelity update
+
+Reconstructed from observed Claude Desktop 2.37337.1 UI and the separately stored evidence in `../claude-evidence`. Independently authored implementation; no proprietary source or fonts are bundled.
+
+- Searchable settings with General, Account, Privacy, Billing, Usage, Capabilities, Memory, Design systems, Reflect, Time and focus, Claude Code, Chrome, System, Extensions, Developer, Skills, Connectors, Plugins, and API keys.
+- Appearance preferences apply locally: system/light/dark, font family, transcript size/width, reduced motion.
+- Keyboard-navigable session/account/view menus, command palette, shortcut reference, session pin/rename/fork/export.
+- Resizable side-by-side or stacked conversation panes; secondary sessions/drafts persist independently. Keyboard resizing and pane focus controls.
+- Larger system-font typography, desktop sidebar width, revised neutral surfaces, composer spacing, and responsive stacked panes.
+
+Validation: production TypeScript/Vite build; UI checks for settings shortcut, appearance updates, split resize/move, independent demo response, command search, and 390px responsive layout.
+
+Limits: browser-reserved shortcuts can be intercepted by the browser. Model/backend, native computer/browser controls, account/billing, and integration switches are simulations. System fonts approximate the reference; this is not an exact full native-app clone.
