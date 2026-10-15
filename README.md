@@ -40,3 +40,7 @@ Reconstructed from observed Claude Desktop 2.37337.1 UI and the separately store
 Validation: production TypeScript/Vite build; UI checks for settings shortcut, appearance updates, split resize/move, independent demo response, command search, and 390px responsive layout.
 
 Limits: browser-reserved shortcuts can be intercepted by the browser. Model/backend, native computer/browser controls, account/billing, and integration switches are simulations. System fonts approximate the reference; this is not an exact full native-app clone.
+
+## Latest comparison
+
+See [docs/UI-COMPARISON.md](docs/UI-COMPARISON.md) for the live desktop comparison and remaining browser/native limitations. The current revision adds a compact composer, native-style View/Add/session menus, resizable sidebar, archive recovery, and expanded Claude Code settings.
