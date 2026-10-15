@@ -1,0 +1,79 @@
+{
+  "version": "1.2.0",
+  "captured": "2026-10-15",
+  "source": "Production Vite build, sample data, pinned Playwright1.64.1 Linux amd64 Chromium regression captures",
+  "screenshots": [
+    {
+      "file": "workspace.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "cb2b3d5fb1ca367695c80434eda9665abecd67c6eea45b1ca99eaa88f419a235"
+    },
+    {
+      "file": "settings-general.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "f3f6cae2ab3eafed79e6f1ab9f55477e19c45204d2ffff7f60b55cbe89035b09"
+    },
+    {
+      "file": "settings-code.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "770196f0e5d2f9ae839f85c9a37628fc0ab7e77c9338dee984c368e38017d11a"
+    },
+    {
+      "file": "split-right.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "a591b0a026e22a26ae5f92d99fad617c372e88b7d8f3ef42128176e6eb8c71ea"
+    },
+    {
+      "file": "split-below.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "1dd9f89927be957ae5f7c99b229a88e03817524a290519241f4aec8e8b84fb70"
+    },
+    {
+      "file": "layout-menu.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "bdbf06264d8a4d953b009190d4962c9b5884b62c68e4d48770ad12ebc8f2f9c1"
+    },
+    {
+      "file": "mobile-workspace.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "2bdf197e3687a44030ba1a944f37448b32c46e41108775e8d050d459bfdccba5"
+    },
+    {
+      "file": "model-effort.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "cc198b522eed8ea551651e33459ecc0347c62b78aea8b8928b89d964a7f52e8c"
+    },
+    {
+      "file": "model-effort-submenu.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "ddbb3ba5a4efeddbe0ce064341c7d19dc24c79f39f276396247898e6e518b246"
+    }
+  ]
+}

@@ -47,13 +47,13 @@ See [docs/UI-COMPARISON.md](docs/UI-COMPARISON.md) for the live desktop comparis
 
 ## Releases and screenshots
 
-Current release: **v1.1.0**. See [Changelog](CHANGELOG.md), [interaction audit](docs/INTERACTION-AUDIT.md), and [release workflow](docs/RELEASING.md). Git tags identify reproducible snapshots; screenshots are kept by version and checked with SHA-256 manifests.
+Current release: **v1.2.0**. See [Changelog](CHANGELOG.md), [interaction audit](docs/INTERACTION-AUDIT.md), and [release workflow](docs/RELEASING.md). Git tags identify reproducible snapshots; screenshots are kept by version and checked with SHA-256 manifests.
 
-![Workspace v1.1.0](docs/screenshots/v1.1.0/workspace.jpg)
-![Settings v1.1.0](docs/screenshots/v1.1.0/settings-code.jpg)
-![Split view v1.1.0](docs/screenshots/v1.1.0/split-right.jpg)
+![Workspace v1.2.0](docs/screenshots/v1.2.0/workspace.png)
+![Settings v1.2.0](docs/screenshots/v1.2.0/settings-code.png)
+![Split view v1.2.0](docs/screenshots/v1.2.0/split-right.png)
 
-[All v1.1.0 screenshots](docs/screenshots/v1.1.0/) include General settings, layout menu, stacked panels and mobile. These show the current prototype with sample data, not private conversations from the native Claude application.
+[All v1.2.0 screenshots](docs/screenshots/v1.2.0/) include General settings, layout menu, stacked panels and mobile. These show the current prototype with sample data, not private conversations from the native Claude application.
 
 ```sh
 npm ci
@@ -61,3 +61,13 @@ npm run build
 npm run verify:release
 npm run preview
 ```
+
+## Evidence and automated checks
+
+See [web runtime audit](docs/WEB-UX-AUDIT.md), [shipped desktop source audit](docs/SOURCE-AUDIT.md), and [reproducible interaction/screenshot tests](TESTING.md). The actual Claude reference screenshot is separate from prototype release screenshots. Tests cover browser-local behavior, not backend/native service equivalence.
+
+## Mock backend example
+
+The UI now calls `/api/prototype/v1` through a typed adapter. The hosted static app uses a same-origin service worker backed by IndexedDB. A loopback Node server runs the same handler for backend development. Both conversation panes use cancellable runs; settings/workspace state persist through the API, and Files/Terminal panels call virtual-file and simulated-command endpoints.
+
+See [mock API contract](docs/MOCK-API.md) for endpoints and server usage, and [observed Claude client contracts](docs/API-EVIDENCE.md) for the evidence that informed the design. The mock contract is independently designed, not a claim of compatibility with Claude’s private backend. No real shell, account, repository, or AI service is executed.

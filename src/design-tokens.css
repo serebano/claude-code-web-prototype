@@ -1,0 +1,64 @@
+/* Independently reconstructed compact Code tokens; evidence: docs/SOURCE-AUDIT.md. */
+:root {
+  --code-header-height:48px;
+  --code-sidebar-inset:8px;
+  --code-row-height:26px;
+  --code-row-font:13px;
+  --code-group-font:12px;
+  --code-icon-size:16px;
+  --code-control-height:24px;
+  --code-control-radius:6px;
+  --code-card-radius:8px;
+  --code-composer-radius:12px;
+  --code-transcript-font:14px;
+  --code-transcript-leading:20px;
+  --code-transcript-width:960px;
+}
+.app-shell[data-width="Narrow"]{--code-transcript-width:768px}
+.app-shell[data-width="Wide"]{--code-transcript-width:1280px}
+.app-shell[data-size="Small"]{--code-transcript-font:13px;--code-transcript-leading:19px}
+.app-shell[data-size="Large"]{--code-transcript-font:15px;--code-transcript-leading:22px}
+.app-shell{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.topbar{height:var(--code-header-height)}
+.sidebar{padding-inline:var(--code-sidebar-inset)}
+.sidebar nav button,.session-list .session-link{font-size:var(--code-row-font);min-height:var(--code-row-height);padding:5px 10px;line-height:16px}
+.sidebar nav button{gap:8px}
+.sidebar nav button svg{width:var(--code-icon-size);height:var(--code-icon-size)}
+.recent-heading{font-size:var(--code-group-font)}
+.session-row{margin:0;border-radius:var(--code-control-radius)}
+.session-link>small{font-size:11px;margin-top:3px}
+.message-column,.composer-wrap,[data-width] .message-column,[data-width] .composer-wrap{max-width:var(--code-transcript-width)}
+.message-column{padding:24px 32px 20px}
+.message-copy,.user-bubble,.closing-copy,.feature-list p,.feature-list strong,
+[data-size] .message-copy,[data-size] .user-bubble,.is-split .message-copy,.is-split .user-bubble,.is-split .feature-list p{
+  font-size:var(--code-transcript-font);line-height:var(--code-transcript-leading)
+}
+.composer{border-radius:var(--code-composer-radius)}
+.rail-card{border-radius:var(--code-card-radius)}
+.workspace-menu{border-radius:var(--code-card-radius)}
+.workspace-menu button{min-height:var(--code-row-height);padding:5px 8px;border-radius:var(--code-control-radius)}
+.sidebar-resizer,.split-resizer,.rail-resizer{position:relative;outline-offset:-1px}
+.sidebar-resizer::after,.split-resizer::after,.rail-resizer::after{content:"";position:absolute;inset:0 -5px;z-index:3}
+.split-resizer[aria-orientation="horizontal"]::after{inset:-5px 0}
+.split-resizer:focus-visible,.sidebar-resizer:focus-visible,.rail-resizer:focus-visible{outline:1px solid #9b8272}
+.conversation{position:relative;isolation:isolate}
+.conversation>.transcript,.conversation>.composer-wrap{position:relative;z-index:1}
+@media(max-width:800px){.message-column{padding-inline:18px}}
+.cw-settings-panel{width:min(1024px,calc(100vw - 32px));height:min(800px,calc(100dvh - 32px));max-height:none;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.cw-settings-main>header{height:48px}
+.cw-settings-scroll{padding-top:12px}
+@media(max-width:750px){.cw-settings-panel{width:calc(100vw - 20px);height:94dvh}}
+.code-landing{height:100%;min-height:220px;display:flex;align-items:center;justify-content:center;padding:32px}
+.landing-actions{border:1px solid var(--border);border-radius:12px;width:350px;max-width:100%;padding:4px}
+.landing-actions button{display:flex;gap:12px;align-items:center;width:100%;min-height:38px;padding:8px 12px;border-radius:8px;font-size:14px;color:var(--text);text-align:left}
+.landing-actions button:hover{background:var(--hover)}
+.composer-footer{gap:8px;flex-wrap:wrap}
+.composer-environment,.composer-project{max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.composer-footer .composer-environment>svg:first-child,.composer-footer .composer-project>svg:first-child{display:block;flex-shrink:0}
+.composer-right{margin-left:auto}
+.composer textarea{font-size:var(--code-transcript-font)}
+@media(max-width:1000px){.composer-project{display:none}.composer-environment{max-width:130px}}
+@media(max-width:600px){.composer-environment{display:none}}
+/* Measured model picker surface; submenus share its neutral dark background. */
+.workspace-menu.model-options,.workspace-menu.nested-menu{background:#20201f}
+[data-theme="light"] .workspace-menu.model-options,[data-theme="light"] .workspace-menu.nested-menu{background:var(--surface)}

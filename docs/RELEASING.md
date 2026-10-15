@@ -3,7 +3,7 @@
 Use semantic versions: patch for fixes, minor for new prototype interactions, major for incompatible stored-state changes. Preserve older screenshot folders and tags.
 
 1. Run `npm version patch --no-git-tag-version` (or minor/major) and update CHANGELOG.md.
-2. Run `npm run build`; perform the browser checklist in INTERACTION-AUDIT.md.
+2. Run `npm run build`; run the pinned Linux interaction and screenshot suite described in ../TESTING.md, and review the browser checklist in INTERACTION-AUDIT.md.
 3. Capture the current prototype using only sample content into `docs/screenshots/vX.Y.Z/`. Include workspace, settings, splits and mobile. Do not include real Claude conversations or account data.
 4. Update that folder's manifest.json with version, capture date, viewport, filenames and SHA-256 hashes. Run `npm run verify:release`.
 5. Commit source and screenshots together, push main, and create an annotated `vX.Y.Z` tag on that exact commit. Never move an existing release tag.

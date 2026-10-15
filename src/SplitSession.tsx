@@ -1,3 +1,5 @@
+import {runResponse} from './api/client';
+import {scheduleWorkspaceSave} from './workspaceApi';
 import { useEffect, useRef, useState } from 'react';
 import './split-session.css';
 import { WorkspaceMenu } from './WorkspaceMenus';
@@ -30,7 +32,7 @@ export default function SplitSession({ onClose, onMove, onFocus, focused, sessio
   const [storageError, setStorageError] = useState(false);
   const input = useRef<HTMLTextAreaElement>(null);
   const transcript = useRef<HTMLDivElement>(null);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const controller = useRef<AbortController | null>(null);
   const generation = useRef(0);
   const renameCancelled = useRef(false);
   const renameFinished = useRef(false);
@@ -40,12 +42,12 @@ export default function SplitSession({ onClose, onMove, onFocus, focused, sessio
   const active = saved.sessions.find(s => s.id === saved.active) || saved.sessions[0];
 
   useEffect(() => { if (!bypass && saved.permission === 'Bypass permissions') setSaved(s => ({ ...s, permission: 'Manual' })); }, [bypass, saved.permission]);
-  useEffect(() => { try { localStorage.setItem(key, JSON.stringify(saved)); setStorageError(false); } catch { setStorageError(true); } }, [saved]);
+  useEffect(() => { try { localStorage.setItem(key, JSON.stringify(saved)); scheduleWorkspaceSave(); setStorageError(false); } catch { setStorageError(true); } }, [saved]);
   useEffect(() => { const focus = () => input.current?.focus(); window.addEventListener('focus-secondary-pane', focus); return () => window.removeEventListener('focus-secondary-pane', focus); }, []);
-  useEffect(() => () => { generation.current++; if (timer.current) clearTimeout(timer.current); }, []);
+  useEffect(() => () => { generation.current++; controller.current?.abort(); }, []);
   useEffect(() => { transcript.current?.scrollTo({ top: transcript.current.scrollHeight, behavior: 'smooth' }); }, [active.messages, running]);
   const update = (fn: (s: Session) => Session) => setSaved(s => ({ ...s, sessions: s.sessions.map(item => item.id === s.active ? fn(item) : item) }));
-  function cancel() { generation.current++; if (timer.current) clearTimeout(timer.current); timer.current = null; setRunning(false); }
+  function cancel() { generation.current++; controller.current?.abort(); controller.current = null; setRunning(false); }
   function select(id: string) { cancel(); setSaved(s => ({ ...s, active: id })); setRenaming(false); setMenu(false); }
   function create(source?: Props['sessions'][number]) {
     cancel(); const id = uid();
@@ -57,17 +59,19 @@ export default function SplitSession({ onClose, onMove, onFocus, focused, sessio
     const fork = saved.sessions.find(s => s.sourceId === id);
     if (fork) select(fork.id); else create(source);
   }
-  function send() {
-    const prompt = active.draft.trim(); if (!prompt || timer.current !== null) return;
-    const sessionId = active.id; const token = ++generation.current;
+  async function send() {
+    const prompt = active.draft.trim(); if (!prompt || controller.current) return;
+    const sessionId = active.id, token = ++generation.current, request = new AbortController();
+    controller.current = request;
     update(s => ({ ...s, title: s.title === 'New session' ? prompt.slice(0, 42) : s.title, draft: '', messages: [...s.messages, { id: uid(), role: 'user', text: prompt }] }));
     setRunning(true);
-    timer.current = setTimeout(() => {
-      if (generation.current !== token) return;
-      const text = effectivePermission === 'Plan' ? 'I’d start by identifying the files involved, outlining the smallest change, and checking the expected behavior before making edits.\n\nThis is a local interface demo: no model is connected and no files were read or changed.' : 'I can help break that down into a focused coding task. Share the relevant code or describe the expected behavior, and we can work through an implementation.\n\nThis is a local interface demo: no model is connected and no commands were run.';
-      setSaved(s => ({ ...s, sessions: s.sessions.map(item => item.id === sessionId ? { ...item, messages: [...item.messages, { id: uid(), role: 'assistant', text }] } : item) }));
-      timer.current = null; setRunning(false);
-    }, 1400);
+    try {
+      const response = await runResponse({sessionId,prompt,permission:effectivePermission,model:saved.model,effort:'Medium',channel:'secondary'},request.signal);
+      if (generation.current !== token || request.signal.aborted) return;
+      setSaved(s => ({ ...s, sessions: s.sessions.map(item => item.id === sessionId ? { ...item, messages: [...item.messages, { id: uid(), role: 'assistant', text: response.text }] } : item) }));
+    } catch(error) {
+      if(!request.signal.aborted && generation.current === token) setSaved(s=>({...s,sessions:s.sessions.map(item=>item.id===sessionId?{...item,messages:[...item.messages,{id:uid(),role:'assistant',text:'The mock service could not respond. Your message is saved; try again.'}]}:item)}));
+    } finally { if(controller.current === request){controller.current=null;setRunning(false);} }
   }
   function rename() {
     if (renameFinished.current) return; renameFinished.current = true;

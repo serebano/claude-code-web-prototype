@@ -1,0 +1,32 @@
+{
+  "captured": "2026-10-15",
+  "viewport": {
+    "width": 1470,
+    "height": 942
+  },
+  "crop": {
+    "x": 225,
+    "y": 73,
+    "width": 1020,
+    "height": 796
+  },
+  "source": "Actual Claude in macOS Chrome; prototype in host Chrome for Testing. Same viewport and dialog interior crop; normalized displayed preferences. Font and desktop category differences remain.",
+  "screenshots": [
+    {
+      "file": "claude-web-general.jpg",
+      "sha256": "2eb6abd0b99a87178d0f81e5749d4216ed5eb1a9c2920f54f87679dab19818cf"
+    },
+    {
+      "file": "general-comparison.png",
+      "sha256": "9db1d1a948aec73a4ec10ae16a55779a5edb18c749f115df4023c20b9eac4161"
+    },
+    {
+      "file": "prototype-general-after.png",
+      "sha256": "c6a4f852b456b15080e988e17a2ce18a49902d657a6d267c20d8e71cda5cb45f"
+    },
+    {
+      "file": "prototype-general-before.png",
+      "sha256": "605705e4b3134fdcbbd062da471d74c610f7380c19939ce6f16a86cb7fa18f50"
+    }
+  ]
+}

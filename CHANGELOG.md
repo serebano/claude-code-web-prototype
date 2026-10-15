@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.0 — 2026-10-15
+
+- Align compact Code spacing, sidebar width, transcript widths, settings dimensions, and resize handles with documented desktop package evidence.
+- Add the independently implemented ambient glyph field, pointer trails, reduced-motion behavior, and high-contrast suppression.
+- Match the Code landing actions and environment/project selectors with explicit sample-session import.
+- Fix attachment capture, settings editor focus, and popup clipping/stacking; anchor menus to their triggering controls.
+- Add 102 menu/settings/split interaction checks, 9 API tests, one reference-comparison capture, and 54 visual/texture checks with pinned Linux Chromium screenshot regression infrastructure.
+- Match observed web settings geometry and nested effort menus; add fast-mode persistence and the web new-session shortcut.
+- Include a sanitized actual-web reference screenshot and runtime measurement audit.
+- Introduce a persistent service-worker mock API and shared Node example with cancellable runs, workspace/session/settings/tasks, virtual files, and simulated terminal endpoints.
+- Connect both chat panes and file/terminal views to the API adapter; document observed Code event and native IPC contracts.
+- Record iterative same-page macOS screenshots and remaining font/icon differences.
+- Preserve browser-only demo boundaries; desktop integration and backend behavior remain simulated.
+
 ## 1.1.0 — 2026-10-15
 
 ### Fixed

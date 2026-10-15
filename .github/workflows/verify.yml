@@ -4,17 +4,38 @@ on:
     branches: [main]
     tags: ['v*']
   pull_request:
+permissions:
+  contents: read
 jobs:
-  build:
+  verify:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    timeout-minutes: 30
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --ipc=host --init
+    env:
+      CI: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
-      - run: npm run build
-      - run: npm run verify:release
+      - name: Install locked dependencies
+        id: install
+        run: npm ci
+      - name: Chromium interactions and screenshot regression
+        run: npx playwright test --project=chromium --update-snapshots=none
+      - name: Verify versioned release evidence
+        if: always() && steps.install.outcome == 'success'
+        run: npm run verify:release
+      - name: Upload test report and failure traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chromium-test-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14
