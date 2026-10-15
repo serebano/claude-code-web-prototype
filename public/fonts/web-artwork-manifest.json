@@ -1,0 +1,14 @@
+{
+  "captured": "2026-10-15",
+  "source": "Rendered SVG elements in signed-in claude.ai Code Settings; Reflect navigation icon and Chrome settings artwork only. No account content.",
+  "assets": [
+    {
+      "file": "reflect-nav.svg",
+      "sha256": "5bd5f0cf854e80bc60b1fc304e1885e2b35541ba9e5d042c5ad76b1b85f23a97"
+    },
+    {
+      "file": "chrome-settings.svg",
+      "sha256": "ad2298810173622596bbecf7fdf040b44acd279e005335f9eef644ff27895b00"
+    }
+  ]
+}

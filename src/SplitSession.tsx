@@ -93,7 +93,7 @@ export default function SplitSession({ onClose, onMove, onFocus, focused, sessio
       <button className="cw-split-icon" title="New session" aria-label="New session in secondary pane" onClick={() => create()}>+</button>
       <div className="cw-split-menu-wrap">
         <button ref={menuTrigger} className="cw-split-icon" aria-label="Pane options" aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu(v => !v)}>⋯</button>
-        {menu && <><button className="cw-split-menu-dismiss" tabIndex={-1} aria-label="Dismiss pane menu" onClick={() => { setMenu(false); menuTrigger.current?.focus(); }} /><WorkspaceMenu className="cw-split-menu" label="Secondary pane options" close={() => setMenu(false)} items={[
+        {menu && <><button className="cw-split-menu-dismiss" style={{background:"transparent",boxShadow:"none",outline:"none"}} tabIndex={-1} aria-label="Dismiss pane menu" onClick={() => { setMenu(false); menuTrigger.current?.focus(); }} /><WorkspaceMenu trigger={menuTrigger.current} className="cw-split-menu" label="Secondary pane options" close={() => setMenu(false)} items={[
           { label: 'Rename session', action: startRename },
           { label: 'Move pane right', action: () => onMove('right') },
           { label: 'Move pane below', action: () => onMove('below') },

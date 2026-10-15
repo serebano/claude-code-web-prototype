@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.3.0 — 2026-10-15
+
+- Load the installed Anthropic Sans/Serif variable fonts and Anthropicons, with resource hashes and provenance.
+- Separate observed web and desktop settings layouts; implement paired code previews, custom code font, native extension/developer empty states, and web design/focus/Chrome screens.
+- Correct settings spacing, navigation glyphs, dropdown arrows and screenshot-confirmed alignment.
+- Anchor every workspace popover to its explicit trigger, including Safari clicks that do not focus buttons; track viewport/scroll changes and keep nested menus on-screen. Add dedicated Chromium and WebKit coverage.
+- Restore resize starting dimensions when a drag is canceled; retain committed dimensions normally.
+- Add font/resource, web settings and resize cancellation tests, additional screenshot baselines, and seven retained web reference pairs.
+- Keep model execution, integrations and account operations explicitly simulated; document unverified screens in SCREEN-COVERAGE.md.
+
 ## 1.2.0 — 2026-10-15
 
 - Align compact Code spacing, sidebar width, transcript widths, settings dimensions, and resize handles with documented desktop package evidence.

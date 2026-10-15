@@ -59,7 +59,7 @@ test('grouping persists and session row can pin, rename, archive and restore',as
   await page.getByRole('button',{name:'More navigation items'}).click();
   await page.getByRole('menuitem',{name:'Archived sessions',exact:true}).click();
   await page.getByRole('dialog').getByRole('button',{name:'Renamed API Restore'}).click();
-  await expect(page.locator('.title-button')).toHaveText('Renamed API');
+  await expect(page.locator('.title-button')).toHaveAccessibleName('Renamed API');
   await page.getByRole('button',{name:'More options for Renamed API'}).click();
   await page.getByRole('menuitem',{name:'Unpin',exact:true}).click();
   await expect(page.locator('.session-link').filter({hasText:'Renamed API'})).not.toContainText('⌖');
@@ -70,10 +70,10 @@ test('title menu rename cancel, fork, transcript mode and export retain session 
   await page.getByRole('menuitem',{name:'Rename',exact:true}).click();
   await page.getByRole('textbox',{name:'Session name'}).fill('Uncommitted name');
   await page.getByRole('button',{name:'Cancel',exact:true}).click();
-  await expect(page.locator('.title-button')).toHaveText('Build the analytics dashboard');
+  await expect(page.locator('.title-button')).toHaveAccessibleName('Build the analytics dashboard');
   await openSessionMenu(page);
   await page.getByRole('menuitem',{name:'Fork',exact:true}).click();
-  await expect(page.locator('.title-button')).toHaveText('Build the analytics dashboard (fork)');
+  await expect(page.locator('.title-button')).toHaveAccessibleName('Build the analytics dashboard (fork)');
   await expect(page.locator('.user-bubble')).toContainText('Build a clean analytics dashboard');
   await openSessionMenu(page);
   await page.getByRole('menuitem',{name:/Transcript view:/}).click();
@@ -104,7 +104,7 @@ test('local session link reopens its session and title pin toggles',async ({page
   expect(new URL(link).hash).toBe('#session=welcome');
   await page.locator('.session-link').filter({hasText:'Refactor the API client'}).click();
   await page.goto(link);
-  await expect(page.locator('.title-button')).toHaveText('Build the analytics dashboard');
+  await expect(page.locator('.title-button')).toHaveAccessibleName('Build the analytics dashboard');
 });
 
 test('model, effort and permission choices persist per session',async ({page})=>{
@@ -153,7 +153,7 @@ test('palette/search keyboard actions, no results, shortcut help and sidebar sho
   await expect(page.getByText('No sessions match “no such session”.')).toBeVisible();
   await page.getByPlaceholder('Search your workspace…').fill('API');
   await page.keyboard.press('Enter');
-  await expect(page.locator('.title-button')).toHaveText('Refactor the API client');
+  await expect(page.locator('.title-button')).toHaveAccessibleName('Refactor the API client');
   await page.keyboard.press('Meta+/');
   await expect(page.getByRole('heading',{name:'Keyboard shortcuts'})).toBeVisible();
   await page.keyboard.press('Escape');
@@ -206,36 +206,36 @@ test('every model, effort and ordinary permission option can be selected',async 
  for(const permission of ['Auto','Accept edits','Plan','Manual']){
   await page.locator('.composer-footer > .popup-anchor > button').click();
   await page.getByRole('menuitemcheckbox',{name:permission,exact:true}).click();
-  await expect(page.locator('.composer-footer > .popup-anchor > button')).toHaveText(permission);
+  await expect(page.locator('.composer-footer > .popup-anchor > button')).toHaveAccessibleName(permission);
  }
 });
 
 test('session navigation menu and keyboard history return to prior conversations',async ({page})=>{
  await openSessionMenu(page);await page.getByRole('menuitem',{name:/^Next session/}).click();
- await expect(page.locator('.title-button')).toHaveText('Refactor the API client');
- await page.keyboard.press('Meta+BracketLeft');await expect(page.locator('.title-button')).toHaveText('Build the analytics dashboard');
- await page.keyboard.press('Meta+BracketRight');await expect(page.locator('.title-button')).toHaveText('Refactor the API client');
+ await expect(page.locator('.title-button')).toHaveAccessibleName('Refactor the API client');
+ await page.keyboard.press('Meta+BracketLeft');await expect(page.locator('.title-button')).toHaveAccessibleName('Build the analytics dashboard');
+ await page.keyboard.press('Meta+BracketRight');await expect(page.locator('.title-button')).toHaveAccessibleName('Refactor the API client');
  await openSessionMenu(page);await page.getByRole('menuitem',{name:/^Previous session/}).click();
- await expect(page.locator('.title-button')).toHaveText('Build the analytics dashboard');
+ await expect(page.locator('.title-button')).toHaveAccessibleName('Build the analytics dashboard');
  await openSessionMenu(page);await page.getByRole('menuitem',{name:/^New session/}).click();
- await expect(page.locator('.title-button')).toHaveText('New session');
+ await expect(page.locator('.title-button')).toHaveAccessibleName('New session');
  await expect(page.getByRole('button',{name:'Import Claude Code CLI sessions',exact:true})).toBeVisible();
- await page.keyboard.press('Meta+BracketLeft');await expect(page.locator('.title-button')).toHaveText('Build the analytics dashboard');
+ await page.keyboard.press('Meta+BracketLeft');await expect(page.locator('.title-button')).toHaveAccessibleName('Build the analytics dashboard');
 });
 
 test('Code landing auto mode toggles and imports an explicitly sample transcript',async ({page})=>{
  await page.getByRole('button',{name:'New',exact:true}).click();
  await page.getByRole('button',{name:'Turn on auto mode',exact:true}).click();
- await expect(page.locator('.composer-footer > .popup-anchor > button')).toHaveText('Auto');
+ await expect(page.locator('.composer-footer > .popup-anchor > button')).toHaveAccessibleName('Auto');
  await page.getByRole('button',{name:'Turn off auto mode',exact:true}).click();
- await expect(page.locator('.composer-footer > .popup-anchor > button')).toHaveText('Manual');
+ await expect(page.locator('.composer-footer > .popup-anchor > button')).toHaveAccessibleName('Manual');
  await page.getByRole('button',{name:'Import Claude Code CLI sessions',exact:true}).click();
  await expect(page.getByRole('dialog')).toContainText('illustrative imported session');
  await page.getByRole('button',{name:'Import sample session',exact:true}).click();
- await expect(page.locator('.title-button')).toHaveText('Imported CLI session (sample)');
+ await expect(page.locator('.title-button')).toHaveAccessibleName('Imported CLI session (sample)');
  await expect(page.locator('.message-copy')).toContainText('No local CLI files were accessed.');
  await expect(page.getByRole('dialog')).toBeHidden();
- await page.reload();await expect(page.locator('.title-button')).toHaveText('Imported CLI session (sample)');
+ await page.reload();await expect(page.locator('.title-button')).toHaveAccessibleName('Imported CLI session (sample)');
 });
 
 
@@ -262,7 +262,7 @@ test('fast mode persists within its session and web new-session shortcut works',
  await page.keyboard.press('Escape');await page.locator('.session-link').filter({hasText:'Refactor the API client'}).click();
  await page.locator('.composer-right .footer-button').click();await expect(page.getByRole('menuitemcheckbox',{name:'Enable fast mode',exact:true})).not.toBeChecked();
  await page.keyboard.press('Escape');await page.keyboard.press('Meta+Shift+o');
- await expect(page.locator('.title-button')).toHaveText('New session');
+ await expect(page.locator('.title-button')).toHaveAccessibleName('New session');
  await expect(page.getByRole('button',{name:'Import Claude Code CLI sessions',exact:true})).toBeVisible();
 });
 

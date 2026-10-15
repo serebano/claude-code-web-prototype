@@ -13,7 +13,7 @@ Production: `npm run build`; inspect the build with `npm run preview`.
 
 ## Stack and fidelity
 
-React, TypeScript, Vite, Tailwind CSS, and Lucide icons. React, TypeScript, Vite, and Tailwind were identified in the inspected desktop package. The source here is original; it does not include Anthropic application code, private packages, or extracted assets. Electron, native OS integrations, and Claude's private backend are not part of a browser prototype.
+React, TypeScript, Vite, Tailwind CSS, and the installed Anthropicons variable icon resource. React, TypeScript, Vite, and Tailwind were identified in the inspected desktop package. The application source here is independently authored; the requested private reconstruction includes extracted Anthropic font/icon resources and two desktop empty-state SVG illustrations, with recorded source paths and hashes in `public/fonts/manifest.json` and `public/reference-assets/manifest.json`. It does not include Anthropic application modules or private packages. Electron, native OS integrations, and Claude's private backend are not part of a browser prototype.
 
 Implemented: responsive sidebar and session rail; persistent local sessions and forks; scripted send/stop flow; file attachments by filename only; read-only example file tree; illustrative diff; interactive dashboard preview; demo terminal (help/pwd/ls/clear only); search; rename/export; projects; locally saved schedules; customization preferences; dark/light appearance; modal keyboard focus containment.
 
@@ -29,17 +29,17 @@ The private Sites deployment is configured in `.openai/hosting.json`.
 
 ## Desktop UX fidelity update
 
-Reconstructed from observed Claude Desktop 2.37337.1 UI and the separately stored evidence in `../claude-evidence`. Independently authored implementation; no proprietary source or fonts are bundled.
+Reconstructed from observed Claude Desktop 2.37337.1 UI and the separately stored evidence in `../claude-evidence`. Independently authored implementation with the installed Anthropic Sans, Serif, and Anthropicons resources; see `public/fonts/PROVENANCE.md` and `docs/ICON-AUDIT.md`.
 
 - Searchable settings with General, Account, Privacy, Billing, Usage, Capabilities, Memory, Design systems, Reflect, Time and focus, Claude Code, Chrome, System, Extensions, Developer, Skills, Connectors, Plugins, and API keys.
 - Appearance preferences apply locally: system/light/dark, font family, transcript size/width, reduced motion.
 - Keyboard-navigable session/account/view menus, command palette, shortcut reference, session pin/rename/fork/export.
 - Resizable side-by-side or stacked conversation panes; secondary sessions/drafts persist independently. Keyboard resizing and pane focus controls.
-- Larger system-font typography, desktop sidebar width, revised neutral surfaces, composer spacing, and responsive stacked panes.
+- Observed Anthropic font typography, desktop sidebar width, revised neutral surfaces, composer spacing, and responsive stacked panes.
 
 Validation: production TypeScript/Vite build; UI checks for settings shortcut, appearance updates, split resize/move, independent demo response, command search, and 390px responsive layout.
 
-Limits: browser-reserved shortcuts can be intercepted by the browser. Model/backend, native computer/browser controls, account/billing, and integration switches are simulations. System fonts approximate the reference; this is not an exact full native-app clone.
+Limits: browser-reserved shortcuts can be intercepted by the browser. Model/backend, native computer/browser controls, account/billing, and integration switches are simulations. Font and icon bytes now match the recorded installed resources; browser/OS rasterization, some unobserved screens, and backend behavior remain differences. This is not an exact full native-app clone.
 
 ## Latest comparison
 
@@ -47,13 +47,13 @@ See [docs/UI-COMPARISON.md](docs/UI-COMPARISON.md) for the live desktop comparis
 
 ## Releases and screenshots
 
-Current release: **v1.2.0**. See [Changelog](CHANGELOG.md), [interaction audit](docs/INTERACTION-AUDIT.md), and [release workflow](docs/RELEASING.md). Git tags identify reproducible snapshots; screenshots are kept by version and checked with SHA-256 manifests.
+Current release: **v1.3.0**. See [Changelog](CHANGELOG.md), [interaction audit](docs/INTERACTION-AUDIT.md), and [release workflow](docs/RELEASING.md). Git tags identify reproducible snapshots; screenshots are kept by version and checked with SHA-256 manifests.
 
-![Workspace v1.2.0](docs/screenshots/v1.2.0/workspace.png)
-![Settings v1.2.0](docs/screenshots/v1.2.0/settings-code.png)
-![Split view v1.2.0](docs/screenshots/v1.2.0/split-right.png)
+![Workspace v1.3.0](docs/screenshots/v1.3.0/workspace.png)
+![Settings v1.3.0](docs/screenshots/v1.3.0/settings-code.png)
+![Split view v1.3.0](docs/screenshots/v1.3.0/split-right.png)
 
-[All v1.2.0 screenshots](docs/screenshots/v1.2.0/) include General settings, layout menu, stacked panels and mobile. These show the current prototype with sample data, not private conversations from the native Claude application.
+[All v1.3.0 screenshots](docs/screenshots/v1.3.0/) include General settings, layout menu, stacked panels and mobile. These show the current prototype with sample data, not private conversations from the native Claude application.
 
 ```sh
 npm ci

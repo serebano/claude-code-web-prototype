@@ -1,6 +1,6 @@
 # Packaged source audit: layout and component evidence
 
-Read-only static investigation, 2026-10-15. No Claude execution, native UI inspection, network retrieval, or asset copying. This document records facts and tiny identifying expressions, not implementation code. Numbers below describe shipped declarations and branches, not a measured live screen.
+Static investigation, 2026-10-15. The original audit performed no Claude execution, native UI inspection, network retrieval, or asset copying. A subsequent user-requested fidelity pass copied the four identified font resources; see the implementation addendum below. This document records facts and tiny identifying expressions, not implementation code. Numbers below describe shipped declarations and branches, not a measured live screen.
 
 ## Scope and provenance
 
@@ -52,7 +52,7 @@ CSS [1675768,1676600) gives compact defaults, [1713167,1715338) comfortable over
 
 Compact body/prose declarations are at CSS 1689645/1689706. Tailwind's separate spacing unit is `.25rem` at byte 13450; avoid conflating numeric utility classes with named CDS pad/gap tokens.
 
-CSS [1661180,1662855) sets the root fallback sans stack to system UI, but the later `.cds-root` rule at byte1679217 overrides its default to Anthropic Sans with system UI fallback. The explicit `.cds-root[data-font=system]` rule at1712958 selects system UI instead. Therefore Anthropic Sans is the default CDS family; effective runtime selection remains unobserved. Base weight tokens are regular400, medium500, semibold580, bold600. CSS around byte2413 declares packaged anthropic-sans variable font300–800 and anthropic-serif300–800. No fonts are copied into this project. Accessibility fonts and CJK fallbacks also ship.
+CSS [1661180,1662855) sets the root fallback sans stack to system UI, but the later `.cds-root` rule at byte1679217 overrides its default to Anthropic Sans with system UI fallback. The explicit `.cds-root[data-font=system]` rule at1712958 selects system UI instead. Therefore Anthropic Sans is the default CDS family; effective runtime selection remains unobserved. Base weight tokens are regular400, medium500, semibold580, bold600. CSS around byte2413 declares packaged anthropic-sans variable font300–800 and anthropic-serif300–800. The initial audit copied no fonts; the later fidelity pass below imports these exact four Sans/Serif resources. Accessibility fonts and CJK fallbacks also ship.
 
 ## Code transcript and composer
 
@@ -151,14 +151,14 @@ TEXTURE config at byte315: base strength .26 in both dark and light, cap .9, res
 
 ### Power and timing
 
-Default draw interval40ms (~25fps),10ms while click ripples remain,83ms when backing off. Animation budget180seconds of recent activity, then8seconds to settle; activity extends the budget and can resume over3seconds. GPU/CPU lateness can pause it with retry starting60seconds and exponential backoff capped480seconds. Resize work debounces150ms. WebGL context loss hides and kills rendering. An independent implementation should keep these attention/accessibility/performance behaviors while using original math and drawing code; do not transplant the packaged shaders or font assets.
+Default draw interval40ms (~25fps),10ms while click ripples remain,83ms when backing off. Animation budget180seconds of recent activity, then8seconds to settle; activity extends the budget and can resume over3seconds. GPU/CPU lateness can pause it with retry starting60seconds and exponential backoff capped480seconds. Resize work debounces150ms. WebGL context loss hides and kills rendering. An independent implementation should keep these attention/accessibility/performance behaviors while using original math and drawing code; the prototype does not transplant the packaged shaders.
 
 - **TEXTURE**: `/Applications/Claude.app/Contents/Resources/ion-dist/assets/v1/c9d397622-Ddkc2XHN.js`; 35394 bytes; SHA256 `9c632651e14ba8e4cfcb40e28daf7e0c9b82a380c0c76aeb5c1a3ab9eef240f8`.
 - **TEXTURE_HOST**: `/Applications/Claude.app/Contents/Resources/ion-dist/assets/v1/cc43287c9-DAfOi8yP.js`; 857882 bytes; SHA256 `62ef8705cfef03f4e4159dbe8f6f3a052fcdf902cf0e64ab2f5bd8d4279ba1f2`.
 
 ## Font binary metadata correction and reuse evidence
 
-Fresh read-only WOFF2 metadata inspection confirms the resources below. The compressed table stream was decoded with built-in Brotli, and its byte length exactly matched the sum of directory table lengths for all four files. Only metadata tables were inspected; no font was copied, installed or served.
+Fresh read-only WOFF2 metadata inspection confirms the resources below. The compressed table stream was decoded with built-in Brotli, and its byte length exactly matched the sum of directory table lengths for all four files. Only metadata tables were inspected at that stage; the subsequent fidelity pass described below serves the four matched resources.
 
 All four fonts report version26.179.2, copyright2025–2026 Anthropic PBC, manufacturer BSPK LLC, designer BSPK x Geist x Anthropic, and vendor URL bspk.xyz. These credits do not establish equivalence to a publicly available Geist font. Each font has weight axis minimum300/default400/maximum800 and optical-size axis minimum16/default16/maximum48.
 
@@ -170,3 +170,10 @@ No name-table license-description record (ID13) or license-URL record (ID14) was
 - **Anthropic Sans Variable Text Regular Italic**: `/Applications/Claude.app/Contents/Resources/ion-dist/assets/v1/c9d3a3a49-CJtkx3-S.woff2`; 129536 bytes; SHA256 `ad89863fd0eb36e001166ea2a51e5102d18ffbbe4a0b321291a94d3739a5696b`.
 - **Anthropic Serif Variable Text Regular**: `/Applications/Claude.app/Contents/Resources/ion-dist/assets/v1/c66fc489e-2VcCjn5t.woff2`; 165536 bytes; SHA256 `ac9c19c70558c5152b92119f83ca37dded627b524d75552a26fcda015d4106be`.
 - **Anthropic Serif Variable Text Regular Italic**: `/Applications/Claude.app/Contents/Resources/ion-dist/assets/v1/cc410af59-Dcb-9NUS.woff2`; 163440 bytes; SHA256 `d2fd488ae565a92da356c44e13cb3a5f7080f4ce1bfdd9ad11a30f0dcc3e6ba8`.
+
+
+## Font implementation addendum
+
+The subsequent explicit request to fix the remaining font differences uses the four exact resources above in the private prototype. `public/fonts/manifest.json` records copied-resource hashes and original paths; `public/fonts/PROVENANCE.md` retains attribution and distinguishes resource inclusion from a license grant. `src/fonts.css` registers both normal and italic variable Sans/Serif faces with the packaged 300–800 weight range and Sans discretionary-ligature setting. The previous Anthropic Sans-to-Arial mapping and forced system settings font are overridden. General's Serif preview now uses the real Serif family rather than Georgia. Explicit System and code-monospace preferences retain their platform stacks, matching the distinction in the shipped design system.
+
+`tests/fonts.spec.ts` verifies all four served-resource SHA-256 identities, actual browser FontFace load status, and default interface/settings/Serif-preview family selection. This proves resource fidelity and successful loading, not universal pixel identity across operating systems or every selected font preference. OpenDyslexic remains an installed-font fallback at this point.

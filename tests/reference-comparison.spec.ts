@@ -1,21 +1,21 @@
 import {writeFile} from 'node:fs/promises';
 import {test,expect,openSettings} from './fixtures';
 
-test('reference comparison: General at measured viewport and selected state',async({page},testInfo)=>{
+for(const category of ['General','Claude Code','Capabilities','Design systems','Reflect','Time and focus','Claude in Chrome']) test(`reference comparison: ${category} at measured viewport`,async({page},testInfo)=>{
  await page.setViewportSize({width:1470,height:942});
  await page.evaluate(()=>{
   const saved=JSON.parse(localStorage.getItem('cw.settings')||'{}');
-  localStorage.setItem('cw.settings',JSON.stringify({...saved,font:'Serif',transcriptWidth:'Narrow',voice:'Buttery',browser:'Built-in browser',reduceMotion:false}));
+  localStorage.setItem('cw.settings',JSON.stringify({...saved,referenceSurface:'Web',aiArtifacts:false,font:'Serif',transcriptWidth:'Narrow',voice:'Buttery',browser:'Built-in browser',reduceMotion:false}));
   localStorage.setItem('cw.theme',JSON.stringify('system'));
   localStorage.setItem('cw.textSize',JSON.stringify('Medium'));
  });
- await page.reload();await openSettings(page,'General');
+ await page.reload();await expect(page.getByRole('textbox',{name:'Message',exact:true})).toBeVisible();await page.locator('.profile').click();await page.getByRole('menuitem',{name:/^Settings/}).click();await openSettings(page,category);
  const modal=page.getByRole('dialog',{name:'Settings',exact:true});
- await expect(modal.getByRole('button',{name:'System theme',exact:true})).toHaveAttribute('aria-pressed','true');
+
  await page.evaluate(async()=>{await document.fonts.ready;if(document.activeElement instanceof HTMLElement)document.activeElement.blur()});
  await page.mouse.move(1460,930);
  const bounds=await modal.boundingBox();expect(bounds).not.toBeNull();
- const path=testInfo.outputPath('prototype-general-reference-comparison.png');
+ const path=testInfo.outputPath(`prototype-${category.toLowerCase().replaceAll(' ','-')}-reference-comparison.png`);
  await page.screenshot({path,clip:{x:bounds!.x+2,y:bounds!.y+2,width:bounds!.width-4,height:bounds!.height-4},animations:'disabled',caret:'hide'});
  await testInfo.attach('General comparison crop',{path,contentType:'image/png'});
  const geometry=await modal.evaluate(element=>{

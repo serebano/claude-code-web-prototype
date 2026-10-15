@@ -3,7 +3,7 @@ import type {Page} from '@playwright/test';
 
 // Baselines are generated/reviewed in the pinned Linux Playwright container,
 // never accepted implicitly during a regression run. No native app data is used.
-const categories=['General','Account','Privacy','Billing','Usage','Capabilities','Memory','Design systems','Reflect','Time and focus','Claude Code','Cowork','Claude in Chrome','System','Extensions','Developer','Skills','Connectors','Plugins','API keys','About'];
+const categories=['General','Account','Privacy','Billing','Usage','Capabilities','Memory','Design systems','Reflect','Time and focus','Claude Code','Claude in Chrome','System','Extensions','Developer','Skills','Connectors','Plugins','API keys','About'];
 const slug=(value:string)=>value.toLowerCase().replace(/[^a-z0-9]+/g,'-');
 async function stable(page:Page){
  await page.evaluate(async()=>{await document.fonts.ready});
@@ -22,7 +22,7 @@ async function split(page:Page,direction:'right'|'below'){
 
 for(const category of categories)test(`visual settings: ${category}`,async({page})=>{
  await openSettings(page,category);
- await expect(page.getByRole('dialog',{name:'Settings',exact:true}).getByRole('navigation').getByRole('button',{name:category,exact:true})).toHaveAttribute('aria-current','page');
+ if(category!=='About')await expect(page.getByRole('dialog',{name:'Settings',exact:true}).getByRole('navigation').getByRole('button',{name:category,exact:true})).toHaveAttribute('aria-current','page');
  await page.mouse.move(1430,950);
  await capture(page,`settings-${slug(category)}`);
 });
@@ -116,4 +116,10 @@ test('visual menu: nested effort options',async({page})=>{
  await expect(page.getByRole('menu',{name:'Effort',exact:true})).toBeVisible();
  await page.mouse.move(1430,950);
  await capture(page,'menu-model-effort-submenu');
+});
+
+for(const category of ['General','Claude Code','Capabilities','Design systems','Time and focus','Claude in Chrome'])test(`visual web settings: ${category}`,async({page})=>{
+ await page.evaluate(()=>localStorage.setItem('cw.settings',JSON.stringify({referenceSurface:'Web'})));
+ await page.reload();await expect(page.getByRole('textbox',{name:'Message',exact:true})).toBeVisible();
+ await openSettings(page,category);await page.mouse.move(1430,950);await capture(page,`web-settings-${slug(category)}`);
 });

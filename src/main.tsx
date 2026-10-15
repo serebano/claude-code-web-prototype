@@ -6,3 +6,7 @@ bootstrapWorkspace().catch(error=>{console.warn('Mock API initialization failed;
 import './fidelity.css';
 
 import "./design-tokens.css";
+
+import "./fonts.css";
+
+import "./comparison-fixes.css";

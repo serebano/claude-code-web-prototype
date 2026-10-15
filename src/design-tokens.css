@@ -23,7 +23,7 @@
 .sidebar{padding-inline:var(--code-sidebar-inset)}
 .sidebar nav button,.session-list .session-link{font-size:var(--code-row-font);min-height:var(--code-row-height);padding:5px 10px;line-height:16px}
 .sidebar nav button{gap:8px}
-.sidebar nav button svg{width:var(--code-icon-size);height:var(--code-icon-size)}
+.sidebar nav button :is(svg,.claude-icon){width:var(--code-icon-size);height:var(--code-icon-size);font-size:var(--code-icon-size)}
 .recent-heading{font-size:var(--code-group-font)}
 .session-row{margin:0;border-radius:var(--code-control-radius)}
 .session-link>small{font-size:11px;margin-top:3px}
@@ -54,7 +54,7 @@
 .landing-actions button:hover{background:var(--hover)}
 .composer-footer{gap:8px;flex-wrap:wrap}
 .composer-environment,.composer-project{max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.composer-footer .composer-environment>svg:first-child,.composer-footer .composer-project>svg:first-child{display:block;flex-shrink:0}
+.composer-footer .composer-environment>:is(svg,.claude-icon):first-child,.composer-footer .composer-project>:is(svg,.claude-icon):first-child{display:block;flex-shrink:0}
 .composer-right{margin-left:auto}
 .composer textarea{font-size:var(--code-transcript-font)}
 @media(max-width:1000px){.composer-project{display:none}.composer-environment{max-width:130px}}

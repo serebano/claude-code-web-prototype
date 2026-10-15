@@ -1,0 +1,23 @@
+/* Exact installed font resources; see public/fonts/PROVENANCE.md. */
+@font-face { font-family: anthropic-sans; src: url("/fonts/anthropic-sans.woff2") format("woff2"); font-weight: 300 800; font-style: normal; font-display: swap; font-feature-settings: "dlig" 0; }
+@font-face { font-family: anthropic-sans; src: url("/fonts/anthropic-sans-italic.woff2") format("woff2"); font-weight: 300 800; font-style: italic; font-display: swap; font-feature-settings: "dlig" 0; }
+@font-face { font-family: anthropic-serif; src: url("/fonts/anthropic-serif.woff2") format("woff2"); font-weight: 300 800; font-style: normal; font-display: swap; }
+@font-face { font-family: anthropic-serif; src: url("/fonts/anthropic-serif-italic.woff2") format("woff2"); font-weight: 300 800; font-style: italic; font-display: swap; }
+
+:root {
+  --font-anthropic-sans: "anthropic-sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-anthropic-serif: "anthropic-serif", Georgia, "Times New Roman", serif;
+  --font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-anthropic-sans);
+}
+.app-shell { --font-interface: var(--font-anthropic-sans); font-family: var(--font-interface); }
+.app-shell[data-interface-font="Anthropic Sans"] { font-family: var(--font-anthropic-sans); }
+.app-shell[data-interface-font="System"] { --font-interface: var(--font-system); font-family: var(--font-interface); }
+.app-shell[data-interface-font="OpenDyslexic"] { --font-interface: "OpenDyslexic", "Comic Sans MS", sans-serif; font-family: var(--font-interface); }
+.cw-settings-panel { font-family: var(--font-interface, var(--font-anthropic-sans)); }
+.workspace-menu { font-family: var(--font-anthropic-sans); }
+.workspace-menu kbd,.shortcut-grid kbd { font-family: var(--font-system); }
+.app-shell[data-font="Serif"] .message-copy,.app-shell[data-font="Serif"] .user-bubble { font-family: var(--font-anthropic-serif); }
+.app-shell[data-font="Sans"] .message-copy,.app-shell[data-font="Sans"] .user-bubble { font-family: var(--font-anthropic-sans); }
+.app-shell[data-font="System"] .message-copy,.app-shell[data-font="System"] .user-bubble { font-family: var(--font-interface); }
+.keyboard-help>h2 { font-family: var(--font-anthropic-serif)!important; }

@@ -22,7 +22,7 @@ The web model selector displayed Opus 5.5, Fable 5.1, Sonnet 5.5, and Haiku 5.5.
 
 The web Code landing page showed Recent environments, a selected Default cloud environment, Choose environment, and a bottom composer. Desktop evidence showed Import CLI and Auto actions. The prototype retains the desktop landing workflow and broader desktop settings/permission options rather than treating this account’s web configuration as universal.
 
-The Code sidebar measured 299px in the existing session, but it is resizable; this is not evidence of a 299px default. Its computed font began anthropic-sans with system fallbacks. Proprietary fonts were not copied. Font fallback rendering remains a known difference. Backend execution, billing, credentials, native integrations, and account operations remain simulations.
+The Code sidebar measured 299px in the existing session, but it is resizable; this is not evidence of a 299px default. Its computed font began anthropic-sans with system fallbacks. The subsequent font/icon pass copied the installed Anthropic Sans, Serif, and Anthropicons resources with SHA-256 provenance (`public/fonts/manifest.json`). Explicit System preferences still use platform fonts; rasterization can differ across browsers and operating systems. Backend execution, billing, credentials, native integrations, and account operations remain simulations.
 
 ## Screenshot provenance
 
@@ -36,4 +36,4 @@ After initial test completion, an explicit screenshot comparison found remaining
 
 ![Actual reference, prototype before, prototype after](reference/2026-10-15/general-comparison.png)
 
-The comparison retains desktop-only navigation categories rather than hiding them for the image. Anthropic Sans letter shapes, some icons, and native dropdown arrows remain different. The reference is Chrome on macOS and the comparison uses Chrome for Testing on macOS. This is a documented improvement, not a pixel-identity certification.
+The comparison retains desktop-only navigation categories rather than hiding them for the image. This historical v1.2 comparison predates the font/icon pass: its Anthropic Sans letter shapes, some icons, and native dropdown arrows differed. The subsequent pass uses matching installed font and icon bytes; this does not retroactively update these historical images or establish every-screen pixel identity. The reference is Chrome on macOS and the comparison uses Chrome for Testing on macOS. This is a documented improvement, not a pixel-identity certification.

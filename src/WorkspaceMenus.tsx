@@ -1,8 +1,8 @@
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
-import {Check,ChevronRight} from 'lucide-react';
+import {Check,ChevronRight} from './Icons';
 import {createPortal} from 'react-dom';
 export type MenuEntry={label:string;shortcut?:string;action?:()=>void;checked?:boolean;disabled?:boolean;danger?:boolean;separator?:boolean;description?:string;icon?:React.ReactNode;children?:MenuEntry[];heading?:boolean;radio?:boolean};
-type Props={items:MenuEntry[];label:string;close:()=>void;className?:string;anchor?:HTMLElement|null;onSelect?:()=>void;description?:string};
+type Props={items:MenuEntry[];label:string;close:()=>void;className?:string;trigger:HTMLElement|null;anchor?:HTMLElement|null;onSelect?:()=>void;description?:string};
 
 function modelEntries(items:MenuEntry[]):MenuEntry[]{
  const efforts=items.filter(item=>item.label.endsWith(' effort'));
@@ -15,27 +15,39 @@ function modelEntries(items:MenuEntry[]):MenuEntry[]{
   ...(fast?[{label:'',separator:true},{label:'Fast mode',heading:true},fast]:[])];
 }
 
-export function WorkspaceMenu({items,label,close,className='',anchor,onSelect,description}:Props){
+export function WorkspaceMenu({items,label,close,className='',trigger:triggerElement,anchor,onSelect,description}:Props){
  const ref=useRef<HTMLDivElement>(null);
- const trigger=useRef<HTMLElement|null>(anchor??(document.activeElement instanceof HTMLElement?document.activeElement:null));
+ const trigger=anchor??triggerElement;
  const [submenu,setSubmenu]=useState<{item:MenuEntry;anchor:HTMLElement}|null>(null);
  const search=useRef('');const searchAt=useRef(0);
  const model=label==='Model and effort';
  const entries=model?modelEntries(items):items;
  useLayoutEffect(()=>{
-   const menu=ref.current;if(!menu)return;
-   const rect=menu.getBoundingClientRect();
-   const bounds=trigger.current?.getBoundingClientRect()??rect;
-   const margin=8,above=/account-menu|add-menu/.test(className),right=/view-menu|group-menu|model-options/.test(className),row=className.includes('row-menu');
-   let left=anchor?bounds.right+4:row?bounds.right+4:right?bounds.right-rect.width:bounds.left;
-   if(anchor&&left+rect.width>window.innerWidth-margin)left=bounds.left-rect.width-4;
-   const top=anchor||row?bounds.top:above?bounds.top-rect.height-8:bounds.bottom+8;
-   menu.style.position='fixed';menu.style.left=Math.min(Math.max(margin,left),Math.max(margin,window.innerWidth-rect.width-margin))+'px';
-   menu.style.top=Math.min(Math.max(margin,top),Math.max(margin,window.innerHeight-rect.height-margin))+'px';
-   menu.style.right='auto';menu.style.bottom='auto';menu.style.margin='0';menu.style.maxHeight=(window.innerHeight-margin*2)+'px';menu.style.overflowY='auto';
- },[]);
+   const menu=ref.current;if(!menu||!trigger)return;
+   const position=()=>{
+     if(!trigger.isConnected)return;
+     const margin=8;
+     menu.style.position='fixed';menu.style.right='auto';menu.style.bottom='auto';menu.style.margin='0';
+     menu.style.maxHeight=Math.max(0,window.innerHeight-margin*2)+'px';menu.style.overflowY='auto';
+     const rect=menu.getBoundingClientRect(),bounds=trigger.getBoundingClientRect();
+     const above=/account-menu|add-menu/.test(className),right=/view-menu|group-menu|model-options|cw-split-menu/.test(className),side=!!anchor||className.includes('row-menu');
+     let left=side?bounds.right+4:right?bounds.right-rect.width:bounds.left;
+     if(side&&left+rect.width>window.innerWidth-margin)left=bounds.left-rect.width-4;
+     let top=side?bounds.top:above?bounds.top-rect.height-8:bounds.bottom+8;
+     if(!side){
+       if(above&&top<margin&&bounds.bottom+8+rect.height<=window.innerHeight-margin)top=bounds.bottom+8;
+       if(!above&&top+rect.height>window.innerHeight-margin&&bounds.top-rect.height-8>=margin)top=bounds.top-rect.height-8;
+     }
+     menu.style.left=Math.min(Math.max(margin,left),Math.max(margin,window.innerWidth-rect.width-margin))+'px';
+     menu.style.top=Math.min(Math.max(margin,top),Math.max(margin,window.innerHeight-rect.height-margin))+'px';
+   };
+   position();
+   const observer=new ResizeObserver(position);observer.observe(menu);observer.observe(trigger);
+   window.addEventListener('resize',position);window.addEventListener('scroll',position,true);
+   return()=>{observer.disconnect();window.removeEventListener('resize',position);window.removeEventListener('scroll',position,true)};
+ },[trigger,anchor,className]);
  useEffect(()=>{(ref.current?.querySelector<HTMLButtonElement>('button:not(:disabled)')??ref.current)?.focus()},[]);
- const dismiss=()=>{trigger.current?.isConnected&&trigger.current.focus();close()};
+ const dismiss=()=>{trigger?.isConnected&&trigger.focus();close()};
  const select=()=>{dismiss();onSelect?.()};
  const open=(item:MenuEntry,element:HTMLElement)=>setSubmenu({item,anchor:element});
  return createPortal(<><div ref={ref} className={'workspace-menu '+className} role="menu" tabIndex={-1} aria-label={label} style={model?{width:172,minWidth:172,borderRadius:10}:undefined} onKeyDown={e=>{
@@ -60,13 +72,13 @@ export function WorkspaceMenu({items,label,close,className='',anchor,onSelect,de
  {entries.map((item,i)=>item.separator?<div className="menu-separator" role="separator" key={i}/>:item.heading?<div className="menu-section-label" style={{fontSize:11,color:'var(--muted)',padding:'5px 8px'}} key={i}>{item.label}</div>:<button role={item.radio?'menuitemradio':item.checked!==undefined?'menuitemcheckbox':'menuitem'} aria-checked={item.checked} aria-haspopup={item.children?'menu':undefined} aria-expanded={item.children?submenu?.item.label===item.label:undefined} data-menu-label={item.label} key={i} onPointerEnter={e=>{if(e.pointerType==='mouse'&&item.children&&!item.disabled)open(item,e.currentTarget)}} onPointerMove={e=>{if(e.pointerType==='mouse'&&!item.disabled){e.currentTarget.focus({preventScroll:true});if(submenu&&submenu.item.label!==item.label)setSubmenu(null)}}} disabled={item.disabled} className={item.danger?'danger':''} onClick={e=>{if(item.children){open(item,e.currentTarget);return}select();item.action?.()}}>
  <span className="menu-icon">{item.checked?<Check size={15}/>:item.icon}</span><span className="menu-label">{item.label}{item.description&&!item.children&&<small>{item.description}</small>}</span>{item.shortcut&&<kbd style={model?{marginLeft:0}:undefined}>{item.shortcut}</kbd>}{item.children&&<ChevronRight size={12}/>}</button>)}
  {description&&<p className="menu-description" style={{fontSize:11,lineHeight:1.5,color:'var(--muted)',padding:'8px',margin:0,maxWidth:220}}>{description}</p>}
- </div>{submenu&&<WorkspaceMenu key={submenu.item.label} label={submenu.item.label} className="nested-menu" items={submenu.item.children!} anchor={submenu.anchor} close={()=>setSubmenu(null)} onSelect={select} description={submenu.item.description}/>}</>,document.body)
+ </div>{submenu&&<WorkspaceMenu key={submenu.item.label} label={submenu.item.label} className="nested-menu" items={submenu.item.children!} trigger={submenu.anchor} anchor={submenu.anchor} close={()=>setSubmenu(null)} onSelect={select} description={submenu.item.description}/>}</>,document.body)
 }
 
 export const shortcutGroups=[
- ['Workspace',[['New session','⌘ N'],['Command palette','⌘ K'],['Search sessions','⇧ ⌘ K'],['Show / hide sidebar','⌘ B'],['Settings','⌘ ,'],['Keyboard shortcuts','⌘ /'],['Previous session','⇧ ⌘ ['],['Next session','⇧ ⌘ ]'],['Back','⌘ ['],['Forward','⌘ ]']]],
+ ['Workspace',[['New session','⇧ ⌘ O'],['Command palette','⌘ K'],['Search sessions','⇧ ⌘ K'],['Show / hide sidebar','⌘ B'],['Settings','⇧ ⌘ ,'],['Keyboard shortcuts','⌘ /'],['Previous session','⇧ ⌘ ['],['Next session','⇧ ⌘ ]'],['Back','⌘ ['],['Forward','⌘ ]']]],
  ['Panels',[['Changes','⇧ ⌘ D'],['Files','⇧ ⌘ F'],['Browser','⇧ ⌘ B'],['Preview','⇧ ⌘ P'],['Terminal','⌃ `'],['Side chat','⌘ ;'],['Close pane','⌘ \\']]],
  ['Split view',[['New session on the right','⌃ ⌘ \\'],['New session below','⌃ ⌘ −'],['Focus next split','⌃ ]'],['Focus previous split','⌃ ['],['Close split view','⌃ ⌘ W']]],
  ['Conversation',[['Send message','Enter'],['Insert a new line','⇧ Enter'],['Close menu or dialog','Esc']]]
 ] as const;
-export function KeyboardHelp(){return <div className="keyboard-help"><h2>Keyboard shortcuts</h2><p>Move through your workspace without leaving the keyboard.</p><div className="shortcut-grid">{shortcutGroups.map(([group,items])=><section key={group}><h3>{group}</h3>{items.map(([label,keys])=><div key={label}><span>{label}</span><kbd>{keys}</kbd></div>)}</section>)}</div><footer>On Windows and Linux, use Ctrl in place of ⌘. Some browser-reserved shortcuts may stay with your browser; all commands are also available in menus.</footer></div>}
+export function KeyboardHelp(){return <div className="keyboard-help"><h2>Keyboard shortcuts</h2><p>Move through your workspace without leaving the keyboard.</p><div className="shortcut-grid">{shortcutGroups.map(([group,items])=><section key={group}><h3>{group}</h3>{items.map(([label,keys])=><div key={label}><span>{label}</span><kbd>{keys}</kbd></div>)}</section>)}</div><footer>⌘ N and ⌘ , also work as prototype aliases. On Windows and Linux, use Ctrl in place of ⌘. Some browser-reserved shortcuts may stay with your browser; all commands are also available in menus.</footer></div>}

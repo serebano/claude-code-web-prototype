@@ -10,7 +10,7 @@ Audited 2026-10-15 against the previously observed Claude Desktop UI and the act
 | Settings details | Account edits/info; privacy managers; billing/usage info; memory/import; design guidance; Reflect; Chrome; system/browser/permissions/storage; extension config; developer; About; Code managers; Cowork; Customize routing | Pass |
 | Settings editor validation | Invalid extension JSON rejected; valid object saved/reopened; nested Escape returns to category | Pass |
 | Search | Option text “Dracula” finds correct Code setting; Escape clears search before closing | Pass |
-| Appearance | Theme, transcript font/size/width, code palette/font, diff preview and reduced motion state propagate; Code transcript follows interface font while Home follows Chat font | Pass; system font fallbacks documented |
+| Appearance | Theme, transcript font/size/width, code palette/font, diff preview and reduced motion state propagate; Code transcript follows interface font while Home follows Chat font | Packaged Sans/Serif and icon fonts loaded; source identity tests added |
 | Session state | Draft, permission and model isolated between sessions; active session/local links restore | Pass |
 | Session menus | Rename, fork, pin, archive and restore; local link and JSON export | Pass |
 | Navigation | Home/Code, Projects create/open, Artifacts preview, Scheduled create/toggle/delete, Customize Skills/Connectors/Plugins add/remove, environment grouping | Pass |
@@ -24,7 +24,7 @@ Audited 2026-10-15 against the previously observed Claude Desktop UI and the act
 
 ## Deliberate simulations
 
-Voice, OS permissions, global shortcuts, browser automation, account/billing, token administration, external connectors, schedulers, sandboxing, Remote Control, simulator access, repository edits and AI generation do not execute. Their controls save browser-local demo preferences or show an explanatory detail panel. Share exports/copies locally; a local session link requires the same browser's stored session. Named proprietary fonts use available system substitutes. OpenDyslexic is used only if installed.
+Voice, OS permissions, global shortcuts, browser automation, account/billing, token administration, external connectors, schedulers, sandboxing, Remote Control, simulator access, repository edits and AI generation do not execute. Their controls save browser-local demo preferences or show an explanatory detail panel. Share exports/copies locally; a local session link requires the same browser's stored session. Anthropic Sans/Serif and icons use the packaged resources recorded in public/fonts/manifest.json. OpenDyslexic is used only if installed.
 
 The settings audit is recorded as behavior coverage, not a claim of exact pixel or service parity. Native menus can vary by session environment and enabled features. Browser-reserved shortcuts may be intercepted.
 

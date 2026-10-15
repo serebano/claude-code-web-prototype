@@ -4,7 +4,7 @@ This prototype is independently implemented. Screenshot regression success means
 
 | Area | Implemented and checked | Remaining difference |
 | --- | --- | --- |
-| General settings | Same measured dialog, navigation width, row heights, section baselines, segmented controls; iterative same-viewport macOS captures | Proprietary font glyphs, some icons and native dropdown chevrons; desktop-only navigation entries retained |
+| General settings | Same measured dialog, navigation width, row heights, section baselines, segmented controls; iterative same-viewport macOS captures | Exact packaged fonts/icons now loaded; some illustrations, native dropdown menus and account-gated states remain different. Web and desktop navigation are separate |
 | Menus | Anchored popups, nested effort, pointer/keyboard traversal, Escape/focus return, checked states | Unobserved model catalogs are explicitly unavailable, not invented |
 | Splits | Independent sessions/forks, resizable right/below panes, focus, persistence, cancellable API requests | Not a reconstruction of every native transport or window mode |
 | Messages | Per-session asynchronous mock runs, completion, stop acknowledgement, durable transcript snapshots | Scripted responses; optional SSE route is a status snapshot, not real token streaming |

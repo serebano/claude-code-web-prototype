@@ -38,7 +38,7 @@ function copyBaselines(directory,relative=''){
  }
 }
 const selected=filters.length?filters:(mode==='check'||mode==='update')?['tests/visual.spec.ts',...existsSync(path.join(root,'tests/texture.spec.ts'))?['tests/texture.spec.ts']:[]]:mode==='interactions'?readdirSync(path.join(root,'tests')).filter(name=>name.endsWith('.spec.ts')&&!/^(visual|texture)\.spec\.ts$/.test(name)).map(name=>'tests/'+name):[];
-const argumentsForPlaywright=['test',...selected,'--project=chromium',`--update-snapshots=${mode==='update'?'all':'none'}`];
+const argumentsForPlaywright=['test',...selected,...(mode==='check'||mode==='update'?['--project=chromium']:[]),`--update-snapshots=${mode==='update'?'all':'none'}`];
 if(mode==='interactions')argumentsForPlaywright.push('--grep-invert','visual|screenshot');
 
 // This script runs in a disposable Linux work directory. The source mount is

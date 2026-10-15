@@ -1,0 +1,136 @@
+{
+  "captured": "2026-10-15",
+  "referenceDesktopVersion": "2.42304.0",
+  "webViewport": {
+    "width": 1470,
+    "height": 942
+  },
+  "webCrop": {
+    "x": 225,
+    "y": 73,
+    "width": 1020,
+    "height": 796
+  },
+  "screenshots": [
+    {
+      "file": "claude-desktop-code.png",
+      "sha256": "b62dc6a044bd56797780b07f510986b3c66eeded4e73ccbd651720bccecd5820",
+      "kind": "actual desktop capture"
+    },
+    {
+      "file": "claude-desktop-developer.png",
+      "sha256": "45ccd904426725c1be9d8053ec706703ee61d8e21482d4cee546d21a1f75b911",
+      "kind": "actual desktop capture"
+    },
+    {
+      "file": "claude-desktop-extensions.png",
+      "sha256": "25c2d47992dcf031685615a6103fc62ab7ac5aad681b19f2e33dc20d6f4aef10",
+      "kind": "actual desktop capture"
+    },
+    {
+      "file": "claude-web-capabilities.png",
+      "sha256": "3061806d90de19aa8f51709d055389f4c48affd9311e4d578f636303d5f33e6b",
+      "kind": "actual web capture"
+    },
+    {
+      "file": "claude-web-claude-in-chrome.png",
+      "sha256": "5a8dda0e42d87eefcbffef3df09c18c9ee4490f3163f10bfbf912b490e32ed6e",
+      "kind": "actual web capture"
+    },
+    {
+      "file": "claude-web-code.png",
+      "sha256": "f50d81f337acd154f5ae45219cedcc690543e20cd63314d695fad49688ba39a2",
+      "kind": "actual web capture"
+    },
+    {
+      "file": "claude-web-design-systems.png",
+      "sha256": "b70f21c254c874b65fce082bf1a790ffa09a0a9289196a7dbcf96bad06a745fe",
+      "kind": "actual web capture"
+    },
+    {
+      "file": "claude-web-general.png",
+      "sha256": "d940eba7f19477d7755128c635b652f0e2a951617397e0997c6fe5f71ceb85e6",
+      "kind": "actual web capture"
+    },
+    {
+      "file": "claude-web-reflect.png",
+      "sha256": "8b8a0f8ee019c6175824f682d408a1a17e4b6d313017fb9aaf4e020ea1852037",
+      "kind": "actual web capture"
+    },
+    {
+      "file": "claude-web-time-and-focus.png",
+      "sha256": "af59e49257c2115a439b5db608a3c16a4275f6dab86e146bb835b6affbff4ed5",
+      "kind": "actual web capture"
+    },
+    {
+      "file": "comparison-capabilities.png",
+      "sha256": "3c9800d556e07ccde2435048e21b2e890c990e7ec237b028d427cb25482e9f2e",
+      "kind": "paired comparison"
+    },
+    {
+      "file": "comparison-claude-code.png",
+      "sha256": "50da80835a2487de5cd80f348abc41a35b7f6b1572b36380c5364d22ba7c7621",
+      "kind": "paired comparison"
+    },
+    {
+      "file": "comparison-claude-in-chrome.png",
+      "sha256": "5c6d6c2b8a5df1a75e285349c46660046c2d95e466d8a57b795e851eb718e563",
+      "kind": "paired comparison"
+    },
+    {
+      "file": "comparison-design-systems.png",
+      "sha256": "025a82771355b96b8c2c64870b0ed3f3ab963175e11fe7c597f74a0ee2d7ee77",
+      "kind": "paired comparison"
+    },
+    {
+      "file": "comparison-general.png",
+      "sha256": "53e43edf68aae53d3516f86f86de5b9990487fa264375257196b4c17c7539d85",
+      "kind": "paired comparison"
+    },
+    {
+      "file": "comparison-reflect.png",
+      "sha256": "f7d91f214b8416863cfb0294514088cc7be3c873c1523681295b6674a9abef69",
+      "kind": "paired comparison"
+    },
+    {
+      "file": "comparison-time-and-focus.png",
+      "sha256": "c29eb85e325afab6ff6738dbd376d59ec508baeadd0923ec098da4622acab190",
+      "kind": "paired comparison"
+    },
+    {
+      "file": "prototype-capabilities-reference-comparison.png",
+      "sha256": "a4ab0546286cc653058388065713cb1ece3e2ca03ff844d61bf1f8a9dcb7c0b7",
+      "kind": "prototype capture"
+    },
+    {
+      "file": "prototype-claude-code-reference-comparison.png",
+      "sha256": "d0c87d45fae687cc445bf9400d37137b07e235c09ffe99e789f423bf236afaa0",
+      "kind": "prototype capture"
+    },
+    {
+      "file": "prototype-claude-in-chrome-reference-comparison.png",
+      "sha256": "ea569cf58ea0d530c068ff2270038f434ffc23f5e8c642ac0c5d53a1f710f810",
+      "kind": "prototype capture"
+    },
+    {
+      "file": "prototype-design-systems-reference-comparison.png",
+      "sha256": "33d688eb5043bedd219a6072d778ab276ff4c708bada2d311d216b761480d5d7",
+      "kind": "prototype capture"
+    },
+    {
+      "file": "prototype-general-reference-comparison.png",
+      "sha256": "1d76a3643ef394ad9d7c865b70bb4662e71216e36791337d1cfc05c384eb5de7",
+      "kind": "prototype capture"
+    },
+    {
+      "file": "prototype-reflect-reference-comparison.png",
+      "sha256": "4617b38fec7bc4fb0ed01861875623a626d8f6282e16bd55522153d0b3864761",
+      "kind": "prototype capture"
+    },
+    {
+      "file": "prototype-time-and-focus-reference-comparison.png",
+      "sha256": "96d47171174d206a5922b008fcd9116dc71ba624e9b199af2b08c258443c5b88",
+      "kind": "prototype capture"
+    }
+  ]
+}

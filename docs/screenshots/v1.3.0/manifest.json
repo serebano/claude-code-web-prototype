@@ -1,0 +1,127 @@
+{
+  "version": "1.3.0",
+  "captured": "2026-10-15",
+  "source": "Production Vite build, sample data, pinned Playwright1.64.1 Linux amd64 Chromium regression captures",
+  "screenshots": [
+    {
+      "file": "workspace.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "3aedf874b0971ef3276e49ce13b45f246c4791ec70f0d311b5039a444d611e68"
+    },
+    {
+      "file": "settings-general.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "108097686618b2d6bcc21f1ee6ca9d1c6276f9e0e89eca6a059e9b72abb8c25f"
+    },
+    {
+      "file": "settings-code.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "84e41478bb13c45910b80759683f29188d5c38e903ccf53cd428d1171cb27a62"
+    },
+    {
+      "file": "split-right.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "273b7928efcfca593648236da7b031aff2b6d5b691fb606ec6fe77f3367e103b"
+    },
+    {
+      "file": "split-below.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "60d83487803dc378a97872c7098804bde7c4eecd465b832152dc0f1432dcefeb"
+    },
+    {
+      "file": "mobile-workspace.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "e724a0f7a7f71f670686b1e1e19814106b7433bb3871791b107117ba5dd48efa"
+    },
+    {
+      "file": "layout-menu.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "2338a64939b71322ef19ca82fe7229ca4432ebf8e72f321853f36d5a827ad770"
+    },
+    {
+      "file": "model-effort.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "e824f72e8cb8d94f047677c18bafd1a29a36f7e80ca944c5f91955dea8f3e8b9"
+    },
+    {
+      "file": "model-effort-submenu.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "1d6793609ea049268d881153ac367699860edc4cf6d5f0fb3a005a45620c75b1"
+    },
+    {
+      "file": "settings-extensions.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "182e37951da3dd7d03209976050e0705b159f25a5a8799ec099f794f18a9ca99"
+    },
+    {
+      "file": "settings-developer.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "baea4d41f2d56936a8a72c9fbc796b7052cdea0b29c0ce8a18914d7f50bd2a94"
+    },
+    {
+      "file": "web-settings-code.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "83d19c717b7333a350a0e7eeed10ee66b4a27c910de4e8eba713b4cb4fbaf24c"
+    },
+    {
+      "file": "light-settings.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "94382518dfdb96bc162a57d42ae6e7f108cf34e6a71d153822b1fd5c61638f74"
+    },
+    {
+      "file": "view-options.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "e90a7b637affb11ac736ee53a8f5f21b4c386033e71ec432aa06ba4f78e8d24b"
+    },
+    {
+      "file": "secondary-menu.png",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "31cfb1f022a9cb8c5781b6b892e4fab80ca3c556d1ee500b96ec041d6ee00019"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+@font-face {font-family:Anthropicons-Variable;src:url('/fonts/anthropicons.woff2') format('woff2-variations');font-weight:400 700;font-display:block}
+.claude-icon {font-family:Anthropicons-Variable!important;font-style:normal!important;font-size:var(--icon-size,20px);font-optical-sizing:auto;line-height:1;letter-spacing:0;text-transform:none;text-decoration:none;text-indent:0;display:inline-block;vertical-align:middle;width:var(--icon-size,20px);height:var(--icon-size,20px);flex:none;white-space:nowrap;user-select:none;-webkit-font-smoothing:antialiased}

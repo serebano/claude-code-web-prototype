@@ -1,0 +1,16 @@
+/* Corrections from the retained 1470×942 web reference pairs, 2026-10-15. */
+.cw-settings-navgroup{margin-bottom:24px}
+.cw-settings-panel[data-settings-category='General'] [data-settings-section='Appearance'] .cw-setting-row:last-child{border-bottom:0}
+.cw-settings-panel[data-reference-surface='web'][data-settings-category='Capabilities'] .cw-setting-section{margin-top:40px}
+.cw-settings-panel[data-reference-surface='web'][data-settings-category='Capabilities'] .cw-setting-section:first-child{margin-top:0}
+.cw-settings-panel[data-reference-surface='web'][data-settings-category='Capabilities'] .cw-setting-section .cw-setting-row:last-child{border-bottom:0}
+.cw-design-systems .cw-extra-heading p{line-height:18px}
+.cw-design-search{margin-top:26px}
+.cw-focus-selects select{width:84px;min-width:84px}
+.cw-weekdays button{display:flex;align-items:center;justify-content:center;padding:0;text-align:center}
+.cw-focus .cw-setting-copy p{margin-top:7px}
+.cw-chrome-settings>h3:nth-of-type(2){margin-top:40px}
+.cw-settings-panel select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='m2 4 4 4 4-4' fill='none' stroke='%2396958f' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.cw-setting-control .cw-browser-select select,.cw-setting-control .cw-code-theme-grid select,.cw-focus-selects select,.cw-chrome-settings select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='m2 4 4 4 4-4' fill='none' stroke='%2396958f' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+
+.cw-settings-navgroup .cw-reflect-nav-icon{flex:none;width:20px;height:20px;background:currentColor;mask:url(/fonts/reflect-nav.svg) center/contain no-repeat}

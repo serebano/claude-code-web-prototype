@@ -20,7 +20,7 @@ export default defineConfig({
   trace:'retain-on-failure',
   screenshot:'only-on-failure',
  },
- projects:[{name:'chromium',use:{...devices['Desktop Chrome'],viewport:{width:1440,height:960}}}],
+ projects:[{name:'chromium',use:{...devices['Desktop Chrome'],viewport:{width:1440,height:960}}},{name:'webkit-popovers',testMatch:'**/popovers.spec.ts',use:{...devices['Desktop Safari'],browserName:'webkit',viewport:{width:1440,height:960}}}],
  webServer:{
   command:'npm run build && npm run preview -- --host 0.0.0.0 --port 4173 --strictPort',
   url:'http://127.0.0.1:4173',

@@ -1,0 +1,42 @@
+[
+  {
+    "file": "extensions-empty-dark.svg",
+    "source": "/Applications/Claude.app/Contents/Resources/ion-dist/assets/v1/c71860c77-Co6SIDxO.js",
+    "sourceSHA256": "9279d29433fc17a72bbe72701ba11c8115bb8bae349487c9551760a9758fb2d0",
+    "sourceFunction": "te",
+    "sourceCharacterOffset": 6169,
+    "theme": "dark",
+    "paths": 3,
+    "sha256": "13442ac19ff8a0e5d87d7f3b45fa3410a86728a264c844b559256aa52a4ca527"
+  },
+  {
+    "file": "extensions-empty-light.svg",
+    "source": "/Applications/Claude.app/Contents/Resources/ion-dist/assets/v1/c71860c77-Co6SIDxO.js",
+    "sourceSHA256": "9279d29433fc17a72bbe72701ba11c8115bb8bae349487c9551760a9758fb2d0",
+    "sourceFunction": "te",
+    "sourceCharacterOffset": 6169,
+    "theme": "light",
+    "paths": 3,
+    "sha256": "4b27895633f68aea5f0d93a7f3101e10235e475d26329fb7012ad786bb53f65d"
+  },
+  {
+    "file": "servers-empty-dark.svg",
+    "source": "/Applications/Claude.app/Contents/Resources/ion-dist/assets/v1/c71860c77-BqxeTGl3.js",
+    "sourceSHA256": "ecd8d6e3da143e1797805951d7a57860307cbe2f2d524f13d42f383be8fa57a4",
+    "sourceFunction": "I",
+    "sourceCharacterOffset": 3451,
+    "theme": "dark",
+    "paths": 4,
+    "sha256": "1de518fe7b8695b0ecb68f0ae23bc95746afaec080157d155d57be4b72c3fb01"
+  },
+  {
+    "file": "servers-empty-light.svg",
+    "source": "/Applications/Claude.app/Contents/Resources/ion-dist/assets/v1/c71860c77-BqxeTGl3.js",
+    "sourceSHA256": "ecd8d6e3da143e1797805951d7a57860307cbe2f2d524f13d42f383be8fa57a4",
+    "sourceFunction": "I",
+    "sourceCharacterOffset": 3451,
+    "theme": "light",
+    "paths": 4,
+    "sha256": "c6e96aea7cea27d61f8bf345d6ad75b146ea3e86f5db3ebdb354090b87e52fa5"
+  }
+]

@@ -145,7 +145,7 @@ test('existing session fork is independent; rename Escape cancels and Enter comm
  await pane.getByRole('button',{name:'Pane options'}).click();await page.getByRole('menuitem',{name:'Rename session',exact:true}).click();
  await pane.getByRole('textbox',{name:'Session name'}).fill('Independent work');await page.keyboard.press('Enter');
  await expect(pane.getByRole('combobox',{name:'Select secondary session'}).locator('option:checked')).toHaveText('Independent work');
- await expect(page.locator('.title-button')).toHaveText('Build the analytics dashboard');
+ await expect(page.locator('.title-button')).toHaveAccessibleName('Build the analytics dashboard');
  await pane.getByRole('textbox',{name:'Message secondary session'}).fill('Only in my fork');await pane.getByRole('button',{name:'Send message',exact:true}).click();
  await expect(pane.locator('.cw-split-message')).toHaveCount(4);
  await expect(page.locator('.conversation .user-bubble')).toHaveCount(1);
