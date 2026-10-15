@@ -1,5 +1,6 @@
+import {appBase} from '../appBase';
 const configured=(import.meta as ImportMeta & {env?:Record<string,string>}).env?.VITE_MOCK_API_BASE_URL;
-const base=new URL(configured||'/api/prototype/v1',location.origin);
+const base=new URL(configured||appBase+'api/prototype/v1',location.origin);
 if(base.origin!==location.origin)throw new Error('The prototype API must be same-origin. Use a local reverse proxy for the Node example.');
 let readiness:Promise<void>|undefined;
 export function initializeApi():Promise<void>{
@@ -7,7 +8,7 @@ export function initializeApi():Promise<void>{
  const activation=(async()=>{
   if(configured)return; // Explicit same-origin server adapter; do not intercept it.
   if(!('serviceWorker' in navigator))throw new Error('This prototype API requires a secure browser origin with service worker support.');
-  await navigator.serviceWorker.register('/mock-api-worker.js',{type:'module',scope:'/'});
+  await navigator.serviceWorker.register(appBase+'mock-api-worker.js',{type:'module',scope:appBase});
   await navigator.serviceWorker.ready;
   if(!navigator.serviceWorker.controller)await new Promise<void>((resolve,reject)=>{
    const timer=setTimeout(()=>{navigator.serviceWorker.removeEventListener('controllerchange',changed);reject(new Error('Prototype API worker activation timed out.'))},10000);

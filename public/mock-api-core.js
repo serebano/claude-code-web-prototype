@@ -1,5 +1,5 @@
 /** Independently defined prototype API. No Anthropic endpoints or execution. */
-export const PREFIX='/api/prototype/v1';
+export const PREFIX=/^https?:/.test(import.meta.url)?new URL('./api/prototype/v1',import.meta.url).pathname:'/api/prototype/v1';
 const seed=()=>({workspace:null,sessions:[],tasks:[],settings:{},files:{'README.md':'# Prototype workspace\n\nVirtual files only. No host filesystem access.\n'},runs:{}});
 const validId=v=>typeof v==='string'&&v.length>0&&v.length<160&&!/[\/\\\u0000]/.test(v);
 const object=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
