@@ -1,0 +1,63 @@
+{
+  "version": "1.1.0",
+  "captured": "2026-10-15",
+  "source": "Production Vite build, browser-local sample data",
+  "screenshots": [
+    {
+      "file": "layout-menu.jpg",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "aba01ca7579ba77e4b1e0d8a0cfe77162456dddf9f0aa9b34056d19793593b0f"
+    },
+    {
+      "file": "mobile-split.jpg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "c8560ed7563483c39d1f60c73e1e418eea299ddbc229b415d303b8032500e43d"
+    },
+    {
+      "file": "settings-code.jpg",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "f776783fba102bff36bc3710ebd9100bbd02db649a4cddf8839f2553fdc09c09"
+    },
+    {
+      "file": "settings-general.jpg",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "004da02c515a800e6a3d80bc3002899d993f75f2e6580c426b80cc67d5c72609"
+    },
+    {
+      "file": "split-below.jpg",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "81b4953314c9de8a7dca25debf467f072e616d7bbe83bc6dcc8a6b3ca803b9b5"
+    },
+    {
+      "file": "split-right.jpg",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "3cc4d071b38b33deb585edae58a21518fd24f2a1e7b9f43ff9f81261089e3a03"
+    },
+    {
+      "file": "workspace.jpg",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "7e123ea14cd96914425460e228740841b3cadbe383e0c0b3a78c41ddb8460abe"
+    }
+  ]
+}

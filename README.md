@@ -44,3 +44,20 @@ Limits: browser-reserved shortcuts can be intercepted by the browser. Model/back
 ## Latest comparison
 
 See [docs/UI-COMPARISON.md](docs/UI-COMPARISON.md) for the live desktop comparison and remaining browser/native limitations. The current revision adds a compact composer, native-style View/Add/session menus, resizable sidebar, archive recovery, and expanded Claude Code settings.
+
+## Releases and screenshots
+
+Current release: **v1.1.0**. See [Changelog](CHANGELOG.md), [interaction audit](docs/INTERACTION-AUDIT.md), and [release workflow](docs/RELEASING.md). Git tags identify reproducible snapshots; screenshots are kept by version and checked with SHA-256 manifests.
+
+![Workspace v1.1.0](docs/screenshots/v1.1.0/workspace.jpg)
+![Settings v1.1.0](docs/screenshots/v1.1.0/settings-code.jpg)
+![Split view v1.1.0](docs/screenshots/v1.1.0/split-right.jpg)
+
+[All v1.1.0 screenshots](docs/screenshots/v1.1.0/) include General settings, layout menu, stacked panels and mobile. These show the current prototype with sample data, not private conversations from the native Claude application.
+
+```sh
+npm ci
+npm run build
+npm run verify:release
+npm run preview
+```
